@@ -1,27 +1,23 @@
-import socket
+import urllib.request
 
 url = input("Enter - ")
-host = url.split('/')
+
 try:
-    if host[1] == []: print("Processing...")
-    if host[0] == "https:" or host[0] == "http:": print("")
+    fhand = urllib.request.urlopen(url)
+    count = 0 
+    total = 0
+    for line in fhand:
+        line = line.decode().strip()
+        for l in line:
+            total += 1
+            if total <= 3000:
+                print(l, end='')
+                count += 1
+    print("\n")
+    print("I printed :", count, "letters", "of", total)
 except:
     print("Error - Not a valid URL")
     exit()
-
-mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mysock.connect((host[2], 80))
-# replacing this with the url
-past = 'GET '+ url +' HTTP/1.0\r\n\r\n'
-cmd = past.encode()
-mysock.send(cmd)
-
-while True:
-    data = mysock.recv(512)
-    if (len(data) < 1):
-        break
-    print(data.decode())
-mysock.close()
 
 # Code: http://www.py4e.com/code3/socket1.py
 # Or select Download from this trinket's left-hand menu
