@@ -1,10 +1,3 @@
-# To run this, you can install BeautifulSoup
-# https://pypi.python.org/pypi/beautifulsoup4
-
-# Or download the file
-# http://www.py4e.com/code3/bs4.zip
-# and unzip it in the same directory as this file
-
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
@@ -23,5 +16,4 @@ tags = soup('a')
 for tag in tags:
     print(tag.get('href', None))
 
-# Code: http://www.py4e.com/code3/urllinks.py
-# Or select Download from this trinket's left-hand menu
+# Code: https://www.py4e.com/code3/urllinks.py
